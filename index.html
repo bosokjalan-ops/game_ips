@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#8f3f27">
+  <title>Jelajah Budaya Indonesia | Kuis IPS Kelas 5</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page-bg"></div>
+  <header class="topbar">
+    <a class="brand" href="#" data-page="home"><span class="brand-mark">🇮🇩</span><span><b>Jelajah Budaya</b><small>INDONESIA • KUIS IPS KELAS 5</small></span></a>
+    <nav>
+      <button class="nav-btn active" data-page="home">Beranda</button>
+      <button class="nav-btn" data-page="learn">Belajar</button>
+      <button class="nav-btn" data-page="leaderboard">Peringkat</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section id="home" class="page active">
+      <div class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow">🌺 AYO KENALI NUSANTARA</span>
+          <h1>Petualangan seru mengenal <em>budaya Indonesia!</em></h1>
+          <p>Jelajahi rumah adat, tarian, alat musik, pakaian, dan makanan khas dari berbagai daerah. Belajar jadi lebih menyenangkan!</p>
+          <button class="btn btn-primary btn-large" id="start-btn">Mulai petualangan <span>→</span></button>
+          <div class="hero-stats"><span>📚 15 pertanyaan</span><span>🏅 Poin & penghargaan</span><span>👩‍🏫 Untuk kelas 5 SD</span></div>
+        </div>
+        <div class="hero-art" aria-label="Ilustrasi budaya Indonesia">
+          <div class="sun"></div><div class="art-label label-one">🏠 Rumah adat</div><div class="art-label label-two">🎶 Musik tradisi</div>
+          <div class="island">🌴</div><div class="island island-two">🌺</div><div class="art-center">🧒🏻<br><b>SAHABAT<br>NUSANTARA</b></div>
+          <div class="batik-stamp">✿</div>
+        </div>
+      </div>
+      <div class="section-heading"><div><span class="eyebrow">MULAI DARI SINI</span><h2>Bagaimana cara bermain?</h2></div><span class="heading-emoji">🎯</span></div>
+      <div class="steps">
+        <article class="step-card"><span class="step-icon">✍️</span><b>1. Isi nama</b><p>Masukkan nama agar hasil permainan tercatat.</p></article>
+        <article class="step-card"><span class="step-icon">🧠</span><b>2. Jawab kuis</b><p>Pilih jawaban yang paling tepat dari setiap soal.</p></article>
+        <article class="step-card"><span class="step-icon">🏆</span><b>3. Raih poin</b><p>Kumpulkan poin dan lihat posisimu di peringkat kelas.</p></article>
+      </div>
+      <div class="callout"><span>💡</span><div><b>Ingat, setiap budaya itu berharga!</b><p>Hargai perbedaan dan ikut menjaga kekayaan budaya Indonesia.</p></div></div>
+    </section>
+
+    <section id="play" class="page">
+      <div class="narrow">
+        <button class="back-link" data-page="home">← Kembali ke beranda</button>
+        <div id="setup-panel" class="panel">
+          <span class="eyebrow">🎒 SIAP BERMAIN?</span><h2>Siapa nama penjelajahnya?</h2>
+          <p class="muted">Nama ini akan ditampilkan di papan peringkat kelas.</p>
+          <label for="player-name">Nama lengkap siswa</label>
+          <input id="player-name" maxlength="40" placeholder="Contoh: Alya Putri">
+          <label for="class-code">Kode kelas <span class="optional">(opsional, dari guru)</span></label>
+          <input id="class-code" maxlength="20" placeholder="Contoh: KELAS5A">
+          <label for="question-count">Jumlah soal</label>
+          <select id="question-count"><option value="10">10 soal</option><option value="15" selected>15 soal</option></select>
+          <button class="btn btn-primary full" id="begin-quiz">Ayo mulai! →</button>
+          <p class="tiny">Gunakan nama yang sesuai arahan guru. Jangan masukkan nomor telepon atau data pribadi.</p>
+          <p id="setup-error" class="error"></p>
+        </div>
+        <div id="quiz-panel" class="panel hidden">
+          <div class="quiz-top"><span id="question-counter" class="pill">SOAL 1 / 15</span><span id="live-score" class="score-pill">⭐ 0 poin</span></div>
+          <div class="progress-track"><div id="progress-fill"></div></div>
+          <span id="question-category" class="category-tag">RUMAH ADAT</span>
+          <h2 id="question-text">Pertanyaan akan muncul di sini</h2>
+          <div id="answer-list" class="answers"></div>
+          <div id="feedback" class="feedback hidden"></div>
+          <button id="next-question" class="btn btn-primary full hidden">Soal berikutnya →</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="result" class="page">
+      <div class="narrow">
+        <div class="panel result-panel">
+          <div class="trophy">🏆</div><span class="eyebrow">PETUALANGAN SELESAI</span>
+          <h2 id="result-title">Hebat, Penjelajah!</h2><p class="muted">Terus semangat mengenal dan melestarikan budaya Indonesia.</p>
+          <div class="score-big" id="final-score">0</div><span class="muted">TOTAL POIN</span>
+          <div class="result-stats"><div><b id="correct-count">0</b><span>Benar</span></div><div><b id="wrong-count">0</b><span>Belum tepat</span></div><div><b id="accuracy">0%</b><span>Akurasi</span></div></div>
+          <div class="award" id="award-label">🌱 Pemula Budaya</div>
+          <p id="save-status" class="tiny">Menyimpan hasil ke papan peringkat…</p>
+          <button class="btn btn-primary full" id="see-rank">Lihat papan peringkat</button>
+          <button class="btn btn-light full" id="play-again">Main lagi</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="leaderboard" class="page">
+      <div class="section-heading"><div><span class="eyebrow">🏅 PRESTASI PARA PENJELAJAH</span><h2>Papan Peringkat Kelas</h2><p class="muted">Skor tertinggi akan berada di posisi teratas.</p></div><span class="heading-emoji">🥇</span></div>
+      <div class="panel">
+        <div class="board-toolbar"><div><b>Top penjelajah budaya</b><p class="tiny">Maksimal 35 siswa ditampilkan pada papan kelas ini.</p></div><button class="btn btn-light btn-small" id="refresh-board">↻ Perbarui</button></div>
+        <div id="leaderboard-list"><div class="loading">Memuat peringkat…</div></div>
+        <p id="board-message" class="tiny"></p>
+      </div>
+    </section>
+
+    <section id="learn" class="page">
+      <div class="section-heading"><div><span class="eyebrow">📖 ENSIKLOPEDIA NUSANTARA</span><h2>Kenali budaya Indonesia</h2><p class="muted">Baca fakta singkat sebelum atau sesudah bermain.</p></div><span class="heading-emoji">🌏</span></div>
+      <div class="learn-grid" id="learn-grid"></div>
+    </section>
+  </main>
+
+  <footer><span>🇮🇩</span> Jelajah Budaya Indonesia <small>Belajar • Bermain • Melestarikan</small></footer>
+
+  <!-- Firebase SDK (compat) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
